@@ -1,0 +1,44 @@
+<div class="container">
+  <div ng-controller="IndexCtrl">
+    <h1 class="text-center">Hangman</h1>
+      <div class="form">
+        <div class="form-group col-xs-4 col-xs-offset-4" ng-hide="hideSecret">
+          <form class="form-horizontal" ng-submit="setSecret(word)">
+            <input type="text" ng-model="word" id="focus-me" class="form-control" placeholder="Secret word" autofocus>
+            <input type="submit" class="form-control" value="Create Secret Word!">
+          </form>
+        </div>
+      </div>
+      <h1 class="text-center large">{{placeholder}}</h1>          
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="height">
+        <svg ng-show="canvas" class="canvas" style="float: left" height="400" width="400">
+          <!-- gallows -->
+          <polyline points="50,350 350,350" style="fill:none;stroke:black;stroke-width:10"/>
+          <polyline points="125,350 125,50 250,50 250,100" style="fill:none;stroke:black;stroke-width:10"/>
+
+          <!-- man -->
+          <circle ng-show="man[0]" cx="250" cy="125" r="25" stroke="black" stroke-width="3" fill="red" />
+          <polyline ng-show="man[1]" points="250,150 250,225" style="fill:none;stroke:black;stroke-width:5"/>
+          <polyline ng-show="man[2]" points="250,185 200,135" style="fill:none;stroke:black;stroke-width:5"/>
+          <polyline ng-show="man[3]" points="250,185 300,135" style="fill:none;stroke:black;stroke-width:5"/>
+          <polyline ng-show="man[4]" points="251,221 200,275" style="fill:none;stroke:black;stroke-width:5"/>
+          <polyline ng-show="man[5]" points="249,221 301,275" style="fill:none;stroke:black;stroke-width:5"/>
+
+        </svg>
+        <div ng-repeat="letter in alphabet">
+          <button class="btn btn-default letter" ng-hide="hideButton" ng-click="letterSubmit(letter)">{{letter}}</button>
+        </div>
+      </div>
+    <div class="box" ng-hide="alert" ng-show="alert">
+      <div class="col-xs-4 col-xs-offset-4">
+        <h3 class="text-center">{{message}}</h3>
+        <br>
+        <button ng-click="startGame()" class="btn btn-default text-center">OK</button>
+      </div>
+    </div>     
+  </div>
+</div>
